@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >  
+	<classPathEntry location="D:\repository_uat\repository_uat\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="flat">
+  	<property name="suppressTypeWarnings" value="true" />
+  	<!-- 插件配置须置顶 -->
+  	<!-- 
+  	<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+    	<property name="searchString" value="Example$"/>
+    	<property name="replaceString" value="NewName" />
+    </plugin>
+     -->
+	<plugin type="com.qjyt.erp1000.mybatis.plugin.PaginationPlugin" />
+	<plugin type="com.qjyt.erp1000.mybatis.plugin.SerializablePlugin" /> 
+     
+  	<!-- 去除自动生成的注释 -->  
+	<commentGenerator>  
+		<property name="suppressAllComments" value="true" />  
+	</commentGenerator> 
+  	
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.158:3306/mastl_base_dev" userId="root" password="123456" />
+    <javaModelGenerator targetPackage="com.yskx.core.po" targetProject="mastl_service" >
+    	<property name="enableSubPackages" value="true"/>
+ 		<property name="trimStrings" value="true"/>
+ 		<property name="rootClass" value="com.yskx.core.po.BaseEntity"/>
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.yskx.core.mapper.sqlmap" targetProject="mastl_service">
+    	<property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+    <!-- mysql无法通过别名进行删除 ，deleteByExample失效-->
+    <javaClientGenerator targetPackage="com.yskx.core.mapper" targetProject="mastl_service" type="XMLMAPPER" />
+    
+	    <table tableName="erp_order_opinion" domainObjectName="ErpOrderOpinion" alias="dop"></table>
+	   
+		
+  </context>
+</generatorConfiguration>
